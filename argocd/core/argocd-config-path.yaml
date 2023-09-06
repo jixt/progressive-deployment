@@ -7,6 +7,7 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
+  timeout.reconciliation: 30s
   resource.customizations: |
     argoproj.io/Application:
       health.lua: |

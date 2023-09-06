@@ -1,21 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: golist
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+  name: pd-frontend
   namespace: argocd
 spec:
   source:
-    path: argocd/applications
-    repoURL: 'https://github.com/christianh814/golist'
+    path: apps/frontend
+    repoURL: "git@github.com:jixt/progressive-deployment.git"
     targetRevision: main
   destination:
-    namespace: argocd
-    server: 'https://kubernetes.default.svc'
+    namespace: progressive-deployment
+    server: "https://kubernetes.default.svc"
   project: default
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+    # automated:
+    #   prune: true
+    #   selfHeal: true
     retry:
       limit: 5
       backoff:

@@ -1,18 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-  name: golist-api
+  name: golist
   namespace: argocd
 spec:
   source:
-    path: apps/golist-api
-    repoURL: 'https://github.com/christianh814/golist'
+    path: argocd/apps
+    repoURL: "git@github.com:jixt/progressive-deployment.git"
     targetRevision: main
   destination:
-    namespace: golist
-    server: 'https://kubernetes.default.svc'
+    namespace: argocd
+    server: "https://kubernetes.default.svc"
   project: default
   syncPolicy:
     automated:
